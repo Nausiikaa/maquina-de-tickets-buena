@@ -19,16 +19,19 @@ public class TicketMachine
     private int total;
     // If the machine is special or not.
     private boolean chachi;
+    // The max number of tickets that the machine can sell.
+    private int sold;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost,boolean especial)
+    public TicketMachine(int cost,boolean especial,int maximo)
     {
         price = cost;
         balance = 0;
         total = 0;
         chachi = especial;
+        sold = maximo;
     }
 
     /**
@@ -70,7 +73,11 @@ public class TicketMachine
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        if(sold <= 0){
+            System.out.println("No Tickets Left. Please try again later");
+        }
+        
+        else if(balance >= price) {
             if(chachi == true){
                 //Simulate the printing of the gift.
                 System.out.println("##################");
@@ -91,13 +98,18 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the price.
             balance = balance - price;
+            //Update the tickets left in the machine.
+            sold = sold - 1;
+            
         }
+        
         else {
             System.out.println("You must insert at least: " +
                                (price - balance) + " more cents.");
                     
         }
-    }
+    
+}
 
     /**
      * Return the money in the balance.
