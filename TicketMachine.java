@@ -78,7 +78,7 @@ public class TicketMachine
 
             // Update the total collected with the price.
             total = total + price;
-            // Reduce the balance by the prince.
+            // Reduce the balance by the price.
             balance = balance - price;
         }
         else {
@@ -98,5 +98,15 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    /**
+     * 
+     */
+    public int emptyMachine()
+    {
+      int newTotal;
+      newTotal = total;
+      total = 0;
+      return newTotal;
     }
 }
